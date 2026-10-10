@@ -1,0 +1,6 @@
+id,employee_id,employee_name,department,start_date,end_date,target_status,rejection_reason
+TRIP-01,EMP-101,Иванов И.И.,Бухгалтерия,2025-05-10,2025-05-15,COMPLETED,
+TRIP-02,EMP-102,Петров П.П.,ИТ,2025-06-01,2025-06-05,REJECTED,Бюджет на командировки исчерпан
+TRIP-03,EMP-103,Сидоров С.С.,Продажи,2025-07-01,2025-07-10,CANCELLED,
+TRIP-04,EMP-104,Смирнова А.В.,Кадры,2025-08-01,2025-08-05,APPROVED,
+TRIP-05,EMP-105,Кузнецов Д.А.,Логистика,2025-09-10,2025-09-20,SUBMITTED,
