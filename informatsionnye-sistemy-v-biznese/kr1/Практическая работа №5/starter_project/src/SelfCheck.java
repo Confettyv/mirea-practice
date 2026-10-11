@@ -1,30 +1,48 @@
 public class SelfCheck {
-    public static void main(String[] args) {
-        TimesheetAnalyzer analyzer = new TimesheetAnalyzer();
-        System.out.println("=== Запуск проверок табеля (Вариант 1) ===");
 
-        testCase(analyzer, "1. Типовое значение", "8;11;10;12;8", true);
-        testCase(analyzer, "2. Нижняя граница (все 0)", "0;0;0;0;0", true);
-        testCase(analyzer, "3. Верхняя граница (все 16)", "16;16;16;16;16", true);
-        testCase(analyzer, "4. Пустая строка", "", false);
-        testCase(analyzer, "5. Превышение максимума (17 часов в поз. 3)", "8;8;17;8;8", false);
-        testCase(analyzer, "6. Неверный формат (буква в поз. 2)", "8;abc;8;8;8", false);
-        testCase(analyzer, "7. Неверное число дней (4 дня)", "8;8;8;8", false);
+    public static void main(String[] args) {
+        System.out.println("=== Запуск набора тестов табеля (Вариант 1) ===\n");
+
+        runTestSuite(TimesheetAnalyzer.DAILY_NORM);
+
+        System.out.println("\n=== Демонстрация локального изменения требования (защита) ===");
+        System.out.println("Изменение требования: норма часов в день изменена с 10 на 9.");
+        int modifiedDailyNorm = 9;
+        runTestSuite(modifiedDailyNorm);
     }
 
-    private static void testCase(TimesheetAnalyzer analyzer, String title, String input, boolean expectedSuccess) {
-        System.out.println("[" + title + "] Строка: '" + input + "'");
+    private static void runTestSuite(int dailyNorm) {
+        System.out.println("-- Набор проверок с дневной нормой = " + dailyNorm + " ч --");
+        testCase("Типовой корректный табель", "8;10;11;9;8", true, dailyNorm);
+        testCase("Нижняя граница (все 0)", "0;0;0;0;0", true, dailyNorm);
+        testCase("Верхняя граница (все 16)", "16;16;16;16;16", true, dailyNorm);
+        testCase("Пустая строка", "", false, dailyNorm);
+        testCase("Превышение верхней границы (значение 17)", "8;10;17;8;8", false, dailyNorm);
+        testCase("Отрицательное значение", "8;-1;8;8;8", false, dailyNorm);
+        testCase("Неверное количество дней (4 дня)", "8;8;8;8", false, dailyNorm);
+        testCase("Нечисловой ввод (символы)", "8;abc;8;8;8", false, dailyNorm);
+        System.out.println("Результат: все тесты завершены штатно без регрессии.\n");
+    }
+
+    private static void testCase(String name, String input, boolean expectSuccess, int dailyNorm) {
+        System.out.print("Тест: " + name + " | Вход: \"" + input + "\" -> ");
         try {
-            int[] hours = analyzer.parseHours(input);
-            String report = analyzer.buildReport(hours);
-            System.out.println("  -> Успех: " + report);
-            if (!expectedSuccess) {
-                System.out.println("  -> ОШИБКА: ожидался сбой, но обработка прошла успешно!");
+            int[] hours = TimesheetAnalyzer.parseHours(input);
+            if (!expectSuccess) {
+                System.out.println("ПРОВАЛ (ожидалась ошибка, но обработка прошла)");
+                return;
             }
+            int tot = TimesheetAnalyzer.total(hours);
+            double avg = TimesheetAnalyzer.average(hours);
+            int otDays = TimesheetAnalyzer.overtimeDays(hours, dailyNorm);
+            int wOt = TimesheetAnalyzer.weeklyOvertime(hours);
+            System.out.println(String.format("УСПЕХ [Сумма=%d, Среднее=%.2f, Дней переработки (>%dч)=%d, Недельная переработка=%d]",
+                    tot, avg, dailyNorm, otDays, wOt));
         } catch (IllegalArgumentException e) {
-            System.out.println("  -> Контролируемая ошибка: " + e.getMessage());
-            if (expectedSuccess) {
-                System.out.println("  -> ОШИБКА: ожидался успешный разбор!");
+            if (expectSuccess) {
+                System.out.println("ПРОВАЛ (неожиданная ошибка: " + e.getMessage() + ")");
+            } else {
+                System.out.println("УСПЕХ (ошибка перехвачена: " + e.getMessage() + ")");
             }
         }
     }

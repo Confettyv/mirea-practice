@@ -2,29 +2,27 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderCalculator {
-    public static final double VAT_RATE = 0.10; // Вариант 1: ставка НДС 10%
-    public static final int MIN_QUANTITY = 1;
-    public static final int MAX_QUANTITY = 10000;
-    public static final double MIN_PRICE = 0.0;
-    public static final double MAX_PRICE = 5000000.0;
-    public static final double MIN_DISCOUNT = 0.0;
-    public static final double MAX_DISCOUNT = 30.0;
+    public static final double VAT_RATE = 10.0; // Вариант 1: ставка НДС 10%
 
-    public static boolean isValid(int quantity, double price, double discountPercent) {
-        return quantity >= MIN_QUANTITY && quantity <= MAX_QUANTITY
-                && price > MIN_PRICE && price <= MAX_PRICE
-                && discountPercent >= MIN_DISCOUNT && discountPercent <= MAX_DISCOUNT;
+    public static boolean isValid(int quantity, double price, double discount, double vatRate) {
+        return quantity > 0 && quantity <= 10000
+                && price > 0.0 && price <= 5000000.0
+                && discount >= 0.0 && discount <= 30.0
+                && vatRate >= 0.0 && vatRate <= 100.0;
     }
 
-    public static String getValidationError(int quantity, double price, double discountPercent) {
-        if (quantity < MIN_QUANTITY || quantity > MAX_QUANTITY) {
-            return "Количество единиц должно быть в диапазоне от " + MIN_QUANTITY + " до " + MAX_QUANTITY + ".";
+    public static String getValidationError(int quantity, double price, double discount, double vatRate) {
+        if (quantity <= 0 || quantity > 10000) {
+            return "Ошибка: количество единиц должно быть от 1 до 10000. Введено: " + quantity;
         }
-        if (price <= MIN_PRICE || price > MAX_PRICE) {
-            return "Цена единицы должна быть строго положительной и не более " + String.format(Locale.US, "%.2f", MAX_PRICE) + " руб.";
+        if (price <= 0.0 || price > 5000000.0) {
+            return String.format(Locale.US, "Ошибка: цена за единицу должна быть от 0.01 до 5000000.00 руб. Введено: %.2f", price);
         }
-        if (discountPercent < MIN_DISCOUNT || discountPercent > MAX_DISCOUNT) {
-            return "Скидка должна быть в диапазоне от " + MIN_DISCOUNT + "% до " + MAX_DISCOUNT + "%.";
+        if (discount < 0.0 || discount > 30.0) {
+            return String.format(Locale.US, "Ошибка: скидка должна быть в пределах от 0 до 30%%. Введено: %.2f", discount);
+        }
+        if (vatRate < 0.0 || vatRate > 100.0) {
+            return String.format(Locale.US, "Ошибка: ставка НДС должна быть в пределах от 0 до 100%%. Введено: %.2f", vatRate);
         }
         return "";
     }
@@ -33,12 +31,12 @@ public class OrderCalculator {
         return quantity * price;
     }
 
-    public static double applyDiscount(double baseSum, double discountPercent) {
-        return baseSum * (1.0 - (discountPercent / 100.0));
+    public static double applyDiscount(double baseAmount, double discountPercent) {
+        return baseAmount * (1.0 - discountPercent / 100.0);
     }
 
-    public static double calculateVat(double taxableBase, double vatRate) {
-        return taxableBase * vatRate;
+    public static double calculateVat(double discountedAmount, double vatRate) {
+        return discountedAmount * (vatRate / 100.0);
     }
 
     public static double calculateTotal(int quantity, double price, double discountPercent, double vatRate) {
@@ -52,44 +50,42 @@ public class OrderCalculator {
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.US);
 
-        System.out.println("=== Расчет стоимости заказа (Вариант 1: НДС 10%) ===");
-        System.out.print("Введите количество единиц: ");
         if (!scanner.hasNextInt()) {
-            System.out.println("Ошибка: введено некорректное число для количества.");
+            System.out.println("Ошибка ввода: количество должно быть целым числом.");
             return;
         }
         int quantity = scanner.nextInt();
 
-        System.out.print("Введите цену за единицу (руб): ");
         if (!scanner.hasNextDouble()) {
-            System.out.println("Ошибка: введено некорректное значение цены.");
+            System.out.println("Ошибка ввода: цена должна быть вещественным числом.");
             return;
         }
         double price = scanner.nextDouble();
 
-        System.out.print("Введите скидку (%): ");
         if (!scanner.hasNextDouble()) {
-            System.out.println("Ошибка: введено некорректное значение скидки.");
+            System.out.println("Ошибка ввода: скидка должна быть вещественным числом.");
             return;
         }
         double discount = scanner.nextDouble();
 
-        if (!isValid(quantity, price, discount)) {
-            System.out.println("Ошибка валидации: " + getValidationError(quantity, price, discount));
+        double vatRate = VAT_RATE;
+        if (scanner.hasNextDouble()) {
+            vatRate = scanner.nextDouble();
+        }
+
+        if (!isValid(quantity, price, discount, vatRate)) {
+            System.out.println(getValidationError(quantity, price, discount, vatRate));
             return;
         }
 
-        double baseSum = calculateBase(quantity, price);
-        double discountedSum = applyDiscount(baseSum, discount);
-        double discountAmount = baseSum - discountedSum;
-        double vatAmount = calculateVat(discountedSum, VAT_RATE);
-        double total = discountedSum + vatAmount;
+        double baseAmount = calculateBase(quantity, price);
+        double discountedAmount = applyDiscount(baseAmount, discount);
+        double vatAmount = calculateVat(discountedAmount, vatRate);
+        double totalAmount = discountedAmount + vatAmount;
 
-        System.out.println("\n--- Результаты расчета ---");
-        System.out.printf(Locale.US, "Базовая стоимость:        %12.2f руб.%n", baseSum);
-        System.out.printf(Locale.US, "Сумма скидки (%.1f%%):     %12.2f руб.%n", discount, discountAmount);
-        System.out.printf(Locale.US, "Сумма после скидки:       %12.2f руб.%n", discountedSum);
-        System.out.printf(Locale.US, "НДС (%.0f%%):               %12.2f руб.%n", VAT_RATE * 100.0, vatAmount);
-        System.out.printf(Locale.US, "Итоговая сумма к оплате:  %12.2f руб.%n", total);
+        System.out.printf(Locale.US, "Базовая стоимость: %.2f руб.%n", baseAmount);
+        System.out.printf(Locale.US, "Сумма со скидкой (%.2f%%): %.2f руб.%n", discount, discountedAmount);
+        System.out.printf(Locale.US, "Сумма НДС (%.2f%%): %.2f руб.%n", vatRate, vatAmount);
+        System.out.printf(Locale.US, "Итоговая сумма заказа: %.2f руб.%n", totalAmount);
     }
 }

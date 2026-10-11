@@ -1,4 +1,4 @@
-package starter_project;
+package starter_project.src;
 
 public enum ApprovalRoute {
     STANDARD,

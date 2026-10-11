@@ -1,11 +1,5 @@
-id,name,price
-P001,Keyboard,50.00
-P002,Mouse,25.00
-P003,Monitor,200.00
-P004,Webcam,30.00
-P005,Headset,45.00
-P006,Microphone,60.00
-P007,Desk Chair,150.00
-P008,Desk,300.00
-P009,Printer,120.00
-P010,Scanner,90.00
+productId,productName,unitPrice,quantity
+PRD-01,Ноутбук ThinkPad,85000.0,2
+PRD-02,Беспроводная мышь,2500.0,5
+PRD-02,Беспроводная мышь,2500.0,3
+PRD-03,Клавиатура мембранная,3500.0,1
