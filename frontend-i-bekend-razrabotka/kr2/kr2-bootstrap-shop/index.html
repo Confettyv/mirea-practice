@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoundWave — Главная</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">SoundWave</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Главная</a></li>
+          <li class="nav-item"><a class="nav-link" href="catalog.html">Каталог</a></li>
+          <li class="nav-item"><a class="nav-link" href="product.html">Товар недели</a></li>
+          <li class="nav-item"><a class="nav-link" href="order.html">Оформление заказа</a></li>
+        </ul>
+        <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#quickCallbackModal">
+          Заказать звонок
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero-carousel mb-5">
+      <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Слайд 1"></button>
+          <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Слайд 2"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active py-5 text-white">
+            <div class="container py-4">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-6 text-center text-lg-start">
+                  <span class="badge bg-primary mb-2">Флагман 2026 года</span>
+                  <h1 class="display-4 fw-bold">SoundWave Pro Max ANC</h1>
+                  <p class="lead text-secondary">Премиальное шумоподавление, поддержка Hi-Res кодеков и до 60 часов непрерывного воспроизведения.</p>
+                  <div class="d-flex justify-content-center justify-content-lg-start gap-2 mt-4">
+                    <a href="product.html" class="btn btn-primary btn-lg">Узнать больше</a>
+                    <a href="catalog.html" class="btn btn-outline-light btn-lg">Перейти в каталог</a>
+                  </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                  <img src="images/hero-banner.svg" alt="Баннер SoundWave Pro Series" class="img-fluid rounded shadow" style="max-height: 320px;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item py-5 text-white">
+            <div class="container py-4">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-6 text-center text-lg-start">
+                  <span class="badge bg-warning text-dark mb-2">Специальное предложение</span>
+                  <h1 class="display-4 fw-bold">Скидки до 30% на TWS</h1>
+                  <p class="lead text-secondary">Полная свобода движений с беспроводными наушниками для тренировок, работы и путешествий.</p>
+                  <div class="d-flex justify-content-center justify-content-lg-start gap-2 mt-4">
+                    <a href="catalog.html" class="btn btn-warning btn-lg text-dark fw-bold">Смотреть подборку</a>
+                  </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                  <img src="images/headphone-tws.svg" alt="Акция на TWS" class="img-fluid rounded shadow" style="max-height: 320px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Назад</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Вперед</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="container mb-5">
+      <div class="row g-4 text-center">
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded bg-white shadow-sm h-100">
+            <h5 class="fw-bold text-primary">Официальная гарантия</h5>
+            <p class="text-muted mb-0">2 года полной гарантии и авторизованный сервисный центр по всей РФ.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded bg-white shadow-sm h-100">
+            <h5 class="fw-bold text-primary">Экспресс-доставка</h5>
+            <p class="text-muted mb-0">Курьерская доставка по Москве за 3 часа и надежная отправка в регионы.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded bg-white shadow-sm h-100">
+            <h5 class="fw-bold text-primary">Тест звука перед покупкой</h5>
+            <p class="text-muted mb-0">Послушайте наушники в фирменном шоуруме перед оплатой заказа.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Популярные товары</h2>
+        <a href="catalog.html" class="btn btn-link text-decoration-none">Весь каталог &rarr;</a>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card card-product h-100 shadow-sm">
+            <img src="images/headphone-pro.svg" class="card-img-top" alt="SoundWave Pro Max" height="180">
+            <div class="card-body d-flex flex-column">
+              <span class="badge bg-success w-auto align-self-start mb-2">Хит продаж</span>
+              <h5 class="card-title">SoundWave Pro Max</h5>
+              <p class="card-text text-muted small flex-grow-1">Беспроводные полноразмерные наушники с адаптивным ANC.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fs-5 fw-bold">24 990 ₽</span>
+                <a href="product.html" class="btn btn-sm btn-primary">Купить</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card card-product h-100 shadow-sm">
+            <img src="images/headphone-tws.svg" class="card-img-top" alt="SoundWave Air 3" height="180">
+            <div class="card-body d-flex flex-column">
+              <span class="badge badge-sale text-white w-auto align-self-start mb-2">-20%</span>
+              <h5 class="card-title">SoundWave Air 3</h5>
+              <p class="card-text text-muted small flex-grow-1">Легкие TWS-наушники с защитой IPX5 и чистым микрофоном.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fs-5 fw-bold">7 990 ₽</span>
+                <a href="product.html" class="btn btn-sm btn-primary">Купить</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card card-product h-100 shadow-sm">
+            <img src="images/headphone-sport.svg" class="card-img-top" alt="SoundWave Sport BT" height="180">
+            <div class="card-body d-flex flex-column">
+              <span class="badge bg-info text-dark w-auto align-self-start mb-2">Новинка</span>
+              <h5 class="card-title">SoundWave Sport</h5>
+              <p class="card-text text-muted small flex-grow-1">Спортивные наушники с эргономичной анатомической фиксацией.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fs-5 fw-bold">5 490 ₽</span>
+                <a href="product.html" class="btn btn-sm btn-primary">Купить</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card card-product h-100 shadow-sm">
+            <img src="images/headphone-studio.svg" class="card-img-top" alt="SoundWave Studio 80" height="180">
+            <div class="card-body d-flex flex-column">
+              <span class="badge bg-dark w-auto align-self-start mb-2">Студия</span>
+              <h5 class="card-title">SoundWave Studio 80</h5>
+              <p class="card-text text-muted small flex-grow-1">Мониторные наушники с ровной АЧХ для сведения и продакшна.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fs-5 fw-bold">18 500 ₽</span>
+                <a href="product.html" class="btn btn-sm btn-primary">Купить</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="quickCallbackModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Заказ обратного звонка</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <form id="modalCallbackForm">
+            <div class="mb-3">
+              <label for="modalName" class="form-label">Ваше имя *</label>
+              <input type="text" class="form-control" id="modalName" name="modalName" placeholder="Иван" required>
+            </div>
+            <div class="mb-3">
+              <label for="modalPhone" class="form-label">Контактный телефон *</label>
+              <input type="tel" class="form-control" id="modalPhone" name="modalPhone" placeholder="+7 (999) 000-00-00" required>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="modalConsent" name="modalConsent" required>
+              <label class="form-check-label small" for="modalConsent">
+                Согласен на обработку персональных данных *
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Отправить заявку</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-custom text-white py-4 mt-auto">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <span class="small text-secondary">&copy; 2026 SoundWave. Учебный проект КР №2.</span>
+      <ul class="nav">
+        <li class="nav-item"><a href="index.html" class="nav-link px-2 text-secondary">Главная</a></li>
+        <li class="nav-item"><a href="catalog.html" class="nav-link px-2 text-secondary">Каталог</a></li>
+        <li class="nav-item"><a href="order.html" class="nav-link px-2 text-secondary">Заказ</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

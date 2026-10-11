@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoundWave — Оформление заказа</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">SoundWave</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+          <li class="nav-item"><a class="nav-link" href="catalog.html">Каталог</a></li>
+          <li class="nav-item"><a class="nav-link" href="product.html">Товар недели</a></li>
+          <li class="nav-item"><a class="nav-link active" href="order.html">Оформление заказа</a></li>
+        </ul>
+        <span class="badge bg-primary fs-6">Корзина #2026-1</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Оформление заказа</li>
+      </ol>
+    </nav>
+
+    <div class="row g-5">
+      <div class="col-12 col-lg-7">
+        <h2 class="fw-bold mb-4">Данные покупателя и доставка</h2>
+        <form id="checkoutOrderForm">
+          <div class="row g-3">
+            <div class="col-12 col-sm-6">
+              <label for="customerFirstName" class="form-label">Имя *</label>
+              <input type="text" class="form-control" id="customerFirstName" name="customerFirstName" placeholder="Иван" required>
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="customerLastName" class="form-label">Фамилия *</label>
+              <input type="text" class="form-control" id="customerLastName" name="customerLastName" placeholder="Петров" required>
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="customerEmail" class="form-label">Электронная почта *</label>
+              <input type="email" class="form-control" id="customerEmail" name="customerEmail" placeholder="ivan@example.ru" required>
+            </div>
+            <div class="col-12 col-sm-6">
+              <label for="customerPhone" class="form-label">Номер телефона *</label>
+              <div class="input-group">
+                <span class="input-group-text">+7</span>
+                <input type="tel" class="form-control" id="customerPhone" name="customerPhone" placeholder="9990000000" required>
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="productChoice" class="form-label">Выбранный товар *</label>
+              <select class="form-select" id="productChoice" name="productChoice" required>
+                <option value="" disabled>Выберите товар для оформления</option>
+                <option value="sw-pro-max" selected>SoundWave Pro Max ANC (24 990 ₽)</option>
+                <option value="sw-air-3">SoundWave Air 3 TWS (7 990 ₽)</option>
+                <option value="sw-studio-80">SoundWave Studio 80 Monitor (18 500 ₽)</option>
+                <option value="sw-sport">SoundWave Sport BT Active (5 490 ₽)</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="deliveryAddress" class="form-label">Адрес доставки *</label>
+              <input type="text" class="form-control" id="deliveryAddress" name="deliveryAddress" placeholder="г. Москва, пр-кт Вернадского, д. 78" required>
+            </div>
+            <div class="col-12">
+              <label for="orderComment" class="form-label">Комментарий к заказу</label>
+              <textarea class="form-control" id="orderComment" name="orderComment" rows="3" placeholder="Желаемое время доставки, подъезд, этаж или код домофона"></textarea>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="orderConsent" name="orderConsent" required>
+                <label class="form-check-label small" for="orderConsent">
+                  Подтверждаю правильность внесенных данных и даю согласие на обработку персональных данных *
+                </label>
+              </div>
+            </div>
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary btn-lg w-100">Подтвердить и оформить заказ</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-12 col-lg-5">
+        <div class="card shadow-sm p-4 bg-light border">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="fw-bold">Состав корзины</span>
+            <span class="badge bg-primary rounded-pill">1</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">SoundWave Pro Max ANC</h6>
+                <small class="text-muted">Цвет: Черный графит</small>
+              </div>
+              <span class="text-muted">24 990 ₽</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-white text-success">
+              <div>
+                <h6 class="my-0">Курьерская доставка</h6>
+                <small>Бесплатно по акции</small>
+              </div>
+              <span>0 ₽</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between fw-bold fs-5">
+              <span>Итого к оплате</span>
+              <span class="text-primary">24 990 ₽</span>
+            </li>
+          </ul>
+          <div class="alert alert-secondary small mb-0" role="alert">
+            Оплата осуществляется после проверки товара курьеру: банковской картой или наличными средствами.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-custom text-white py-4 mt-auto">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <span class="small text-secondary">&copy; 2026 SoundWave. Учебный проект КР №2.</span>
+      <ul class="nav">
+        <li class="nav-item"><a href="index.html" class="nav-link px-2 text-secondary">Главная</a></li>
+        <li class="nav-item"><a href="catalog.html" class="nav-link px-2 text-secondary">Каталог</a></li>
+        <li class="nav-item"><a href="order.html" class="nav-link px-2 text-secondary">Заказ</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
